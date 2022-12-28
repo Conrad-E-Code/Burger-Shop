@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Routes, Route, Link,} from "react-router-dom"
 import NavBar from "./NavBar"
 import Menu from "./Menu"
+import LoginForm from "./LoginForm"
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
       <NavBar/>
       <Routes>
         <Route element={<Menu/>} path="/menu"></Route>
+        <Route element={<LoginForm/>} path="/login"></Route>
       </Routes>
     </div>
   );

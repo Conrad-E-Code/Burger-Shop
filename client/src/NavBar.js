@@ -4,8 +4,8 @@ function NavBar(props) {
 
 return(
     <nav className="nav">
-        <NavLink to="/menu">Menu</NavLink>
-        <NavLink to="/login">Login</NavLink>
+        <NavLink className="button" exact to="/menu">Menu</NavLink>
+        <NavLink className="button" exact to="/login">Login</NavLink>
         {/* <NavLink to="/order">Order Now!</NavLink> */}
         {/* <NavLink to="/status">Check Order Status!</NavLink> */}
         {/* <NavLink to="/deals">Deals!</NavLink> */}
