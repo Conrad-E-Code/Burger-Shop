@@ -199,3 +199,54 @@ hypothetical demand scenario:
     
 
 	
+PROJECT NOTES:
+
+Hours of operation:
+11:00 am to 9 PM local time
+10 hours.
+
+when ordering on menu: can only place an order betwenn the hours of 11 and 9. we need to check time. either on the front end of the back end. this could be a validation possibly in rails?
+
+hypothetical demand scenario:
+
+11-1 - 60 Burgers Per Hour (BPH) = 120 burgers
+1-4 10 BPH = 30 burgers
+4-9 15 BPH = 75 burgers
+
+    225 burgers X 0.25 lbs = 56.25 pounds of patties 
+    burgers ordered X 0.8 = fry orders = 180 X 4 oz. of fries (1/4 lb)
+    DAILY USAGE:
+
+    56 Pounds of Patties
+    45 pounds of fries
+    225 BUNS
+    200 cups, lids, straws, whatever.
+
+    WAREHOUSE INVENTORY:
+
+    1 case of patties = 20 pounds (80 Patties)
+    1 case of fries = 25 pounds (100 orders of fries)
+    1 case of buns = 24 buns
+    1 case of cups = 100 cups
+    
+    TWICE WEEKLY STOCK ORDER: SUNDAY, THURSDAY
+    WAREHOUSE WILL SHIP TO LOCATION
+
+    12 cases of patties (240 pounds) 4 patties to a pound 960 patties
+    8 cases of fries    (200 pounds) 4 orders to a pound 800 orders
+    40 cases of buns    (960 buns) 
+    8 cases of cups.    (800 cups)
+
+    
+    WHEN A CASE GETS LOGGED IN AT THE RESTAURANT IT CHANGES FROM A CASE TO A NUMBER OF ITEMS IN THE INGREDIENT INVENTORY.
+
+    RESTAURANTS SHOULD KEEP TRACK OF PAST ORDERS IN A WAY THAT USES THE DATA TO TRACK SUPPLY USAGE THROUGHOUT THE DAY.
+
+
+    
+
+
+
+
+
+    
