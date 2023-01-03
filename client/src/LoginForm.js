@@ -1,15 +1,60 @@
-function LoginForm(props) {
-    function handleLogin(){
-    const configObj = {}
-    fetch("/login",configObj)
+import { useState } from 'react'
+
+function LoginForm({ setUser }) {
+    //need states for current user and password
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
+    const [errors, setErrors] = useState([])
+
+    function handleChangeUsername(e) {
+        setUsername(e.target.value)
     }
-    return(
+
+    function handleChangePassword(e) {
+        setPassword(e.target.value)
+    }
+
+    function handleLogin(e) {
+        e.preventDefault();
+
+        const userObj = {
+            username: username,
+            password: password
+        }
+
+        const configObj = {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(userObj)
+        }
+        //method: POST
+        fetch("/login", configObj)
+            .then(r => {
+                if (r.ok) {
+                    r.json().then((user) => setUser(user))
+                } else {
+                    r.json().then((err) => setErrors(err))
+                }
+            })
+    }
+
+
+
+    return (
         <div className="login">
             <h2>LOGIN FORM</h2>
             <h2>Enter Credentials</h2>
-            BUILD A FORM HERE TO SEND A POST REQUEST
-            what do we need to include here?
-
+            <form className="login-form" onSubmit={handleLogin}>
+                <label>Username<input type="text" onChange={handleChangeUsername} /></label>
+                <br />
+                <label>Password<input type="password" onChange={handleChangePassword} /></label>
+                <br />
+                <button type="submit">Login</button>
+                <br />
+                {errors.map((err) => {
+                    return <p>{err}</p>
+                })}
+            </form>
         </div>
     )
 }
