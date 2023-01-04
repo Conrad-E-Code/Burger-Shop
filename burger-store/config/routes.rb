@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :inventories
+  resources :supplies
+  resources :shipments
+  resources :locations
   resources :managers
   resources :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
