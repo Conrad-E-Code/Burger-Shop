@@ -16,7 +16,7 @@ when shipments are checked in successfully they are deleted. DELETE SHIPMENT
 can view inventories: READ INVENTORY
 <!-- location.inventory.ingredients -->
 
-can subtract from inventory DELETE INGREDIENT
+can subtract from inventory DELETE INGREDIENT (dependant destroy)
 
 
 Stretch goals:
@@ -26,6 +26,7 @@ Shipment discrepancy handling
 TRACK INVENTORY LEVELS OVER TIME IMPLEMENT CHART API?
 RENDER MAP API TO PAGE WITH A PIN SHOWING A FLATIRON LOCATION
 
+Traceable sources for ingredients
 
 
 
@@ -71,7 +72,7 @@ for a case of burgers:
 #80.times |do| Ingredient.create name: patty, inventory_id: (find the correct inventory id) 
 
 
-LOCATION Model
+@LOCATION Model
 attributes:
 
 address: can either be a string or an object with a bunch of strings.
@@ -82,7 +83,7 @@ relationships:
 has_many orders
 has_one inventory
 has_many customers through order
-has_many items through inventory
+has_many ingredients through inventory
 belongs_to User (manager_only)
 
 BEHAVIORS:
@@ -130,9 +131,18 @@ belongs_to shipment
 gets converted into INGREDIENT inside INVENTORY by USER (manager-only)
 is a factor in above iteration for SHIPMENT
 
+Inventory Table: Join Table between location and ingredient
+attributes:  
+location_id:
 
-Ingredients Table
 
+relationships:
+belongs_to location
+has_many ingredients
+
+Ingredients
+validates presence :name, inventory_id
+validates names + buns || fries || patties
 attributes:
  name: string
  inventory_id:
@@ -140,11 +150,7 @@ attributes:
 relationships:
 belongs_to: inventory 
 
-Inventory Table: 
 
-relationships:
-belongs_to location
-has_many ingredients
 
 
 

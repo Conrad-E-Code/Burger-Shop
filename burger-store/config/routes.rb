@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :ingredients
   resources :inventories
   resources :supplies
   resources :shipments

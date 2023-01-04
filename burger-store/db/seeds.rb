@@ -8,7 +8,6 @@
 User.destroy_all
 Location.destroy_all
 Inventory.destroy_all
-Ingredient.destroy_all
 Shipment.destroy_all
 Supply.destroy_all
 
@@ -21,20 +20,9 @@ cameron = User.create(username: "cameron", password: "hackerman")
 denver = Location.create address: "2228 Blake St #100, Denver, CO 80205", user_id: manager.id
 ny = Location.create address: "11 Broadway 2nd floor, New York, NY 10004", user_id: manager.id
 
-denver_inv = Inventory.create location_id: denver.id
-ny_inv = Inventory.create location_id: ny.id 
+denver_inv = Inventory.create location_id: denver.id, patty_count: 5, bun_count: 5, fries_count: 5
+ny_inv = Inventory.create location_id: ny.id, patty_count: 5, bun_count: 5, fries_count: 5
 
-80.times do
-    Ingredient.create name: "patty", inventory_id: denver_inv.id
-end
-
-80.times do
-    Ingredient.create name: "bun", inventory_id: denver_inv.id
-end
-
-100.times do
-    Ingredient.create name: "fries", inventory_id: denver_inv.id
-end
 
 
 denver_shipment = Shipment.create location_id: denver.id
