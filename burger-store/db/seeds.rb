@@ -6,11 +6,45 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 User.destroy_all
+Location.destroy_all
+Inventory.destroy_all
+Ingredient.destroy_all
+Shipment.destroy_all
+Supply.destroy_all
+
 
 manager = User.create(username: "manager1", password: "managerpass", is_manager: true)
 michelle = User.create(username: "michelle", password: "1234")
 conrad = User.create(username: "conrad", password: "burgers")
 cameron = User.create(username: "cameron", password: "hackerman")
+
+denver = Location.create address: "2228 Blake St #100, Denver, CO 80205", user_id: manager.id
+ny = Location.create address: "11 Broadway 2nd floor, New York, NY 10004", user_id: manager.id
+
+denver_inv = Inventory.create location_id: denver.id
+ny_inv = Inventory.create location_id: ny.id 
+
+80.times do
+    Ingredient.create name: "patty", inventory_id: denver_inv.id
+end
+
+80.times do
+    Ingredient.create name: "bun", inventory_id: denver_inv.id
+end
+
+100.times do
+    Ingredient.create name: "fries", inventory_id: denver_inv.id
+end
+
+
+denver_shipment = Shipment.create location_id: denver.id
+ny_shipment = Shipment.create location_id: denver.id
+
+denver_shipment_patties = Supply.create name:"patties", weight: 20, shipment_id: denver_shipment.id
+denver_shipment_buns1 = Supply.create name:"buns", weight: 1, shipment_id: denver_shipment.id
+denver_shipment_buns2 = Supply.create name:"buns", weight: 1, shipment_id: denver_shipment.id
+denver_shipment_fries = Supply.create name:"fries", weight:25, shipment_id: denver_shipment.id
+ny_shipment_patties = Supply.create name:"patties", weight: 20, shipment_id: ny_shipment.id
 
 puts "Done seeding"
 
