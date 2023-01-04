@@ -220,14 +220,14 @@ hypothetical demand scenario:
     56 Pounds of Patties
     45 pounds of fries
     225 BUNS
-    200 cups, lids, straws, whatever.
+    SKIP 200 cups, lids, straws, whatever.
 
     WAREHOUSE INVENTORY:
 
     1 case of patties = 20 pounds (80 Patties)
     1 case of fries = 25 pounds (100 orders of fries)
     1 case of buns = 24 buns
-    1 case of cups = 100 cups
+    SKIP 1 case of cups = 100 cups
     
     TWICE WEEKLY STOCK ORDER: SUNDAY, THURSDAY
     WAREHOUSE WILL SHIP TO LOCATION
@@ -235,7 +235,7 @@ hypothetical demand scenario:
     12 cases of patties (240 pounds) 4 patties to a pound 960 patties
     8 cases of fries    (200 pounds) 4 orders to a pound 800 orders
     40 cases of buns    (960 buns) 
-    8 cases of cups.    (800 cups)
+    // SKIP CUPS FOR NOW 8 cases of cups.    (800 cups)
 
     
     WHEN A CASE GETS LOGGED IN AT THE RESTAURANT IT CHANGES FROM A CASE TO A NUMBER OF ITEMS IN THE INGREDIENT INVENTORY.
