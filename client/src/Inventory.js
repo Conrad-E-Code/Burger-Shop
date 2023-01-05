@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react"
+import { useState, useEffect } from "react"
 
 function Inventory(props) {
     const [inv, setInv] = useState([])
@@ -9,7 +9,8 @@ function Inventory(props) {
     //         )
 
     //     })}
-    
+
+
     // function loopedInv(inv) {
     //     for(const key in inv) {
     //         console.log(key)
@@ -21,17 +22,19 @@ function Inventory(props) {
     useEffect(() => {
         const locationId = 1
         fetch(`/inventories/${locationId}`)
-        .then((r) => r.json())
-        .then((data) => setInv(data))
+            .then((r) => r.json())
+            .then((data) => setInv(data))
     }, [])
+
+    console.log(inv)
+
     return (
         <div>
-            {/* {mappedInv()} */}
             <p>Patty_count: {inv.patty_count} </p>
-            <p>Bun_count: {inv.patty_count}</p>
+            <p>Bun_count: {inv.bun_count}</p>
             <p>Fries_count: {inv.fries_count}</p>
         </div>
-        )
+    )
 }
 
 
