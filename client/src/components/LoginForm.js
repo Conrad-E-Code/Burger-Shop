@@ -5,7 +5,17 @@ function LoginForm({ setUser }) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [errors, setErrors] = useState([])
-
+    //    OBSOLETE CODE 
+    // function errMap(errors) {
+    //     if(errors["errors"] === true){
+    //         console.log(errors["errors"])
+    //     errors["errors"].map((err)=> {
+    //         return(
+    //             <p>{err}</p>
+    //         )
+    //     })
+    //     }
+    // }
     function handleChangeUsername(e) {
         setUsername(e.target.value)
     }
@@ -33,7 +43,7 @@ function LoginForm({ setUser }) {
                 if (r.ok) {
                     r.json().then((user) => setUser(user))
                 } else {
-                    r.json().then((err) => setErrors(err))
+                    r.json().then((err) => setErrors(err["errors"]))
                 }
             })
     }
@@ -51,10 +61,11 @@ function LoginForm({ setUser }) {
                 <br />
                 <button type="submit">Login</button>
                 <br />
-                {/* {errors.map((err) => {
-                    return <p>{err}</p>
-                })} */}
             </form>
+            {errors.map((err) => (
+                <p style={{color: "red", fontWeight: "bold" }}
+                key={err}>{err}</p>
+            ))}
         </div>
     )
 }

@@ -2,10 +2,11 @@
 import './App.css';
 import { useState, useEffect } from "react";
 import { Routes, Route, Link} from "react-router-dom"
-import NavBar from "./NavBar"
-import Menu from "./Menu"
-import LoginForm from "./LoginForm"
-import Inventory from "./Inventory"
+import NavBar from "./components/NavBar"
+import Menu from "./components/Menu"
+import LoginForm from "./components/LoginForm"
+import Inventory from "./components/Inventory"
+import SignupForm from './components/SignupForm';
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
         <Route element={<Menu/>} path="/menu"></Route>
         <Route element={<LoginForm setUser={setUser}/>} path="/login"></Route>
         <Route element={<Inventory/>} path="/inventory"></Route>
+        <Route element={<SignupForm/>} path="/signup"></Route>
         
       </Routes>
     </div>
