@@ -4,4 +4,7 @@ class User < ApplicationRecord
     has_many :locations
     has_many :inventories, through: :locations
     has_many :ingredients, through: :inventories
+    has_many :orders
+    has_many :items, through: :orders
+    has_one :cart
 end
