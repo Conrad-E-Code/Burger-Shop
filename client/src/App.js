@@ -1,19 +1,18 @@
 
 import './App.css';
 import { useState, useEffect } from "react";
-import { Routes, Route, Link} from "react-router-dom"
+import { useNavigate, Routes, Route} from "react-router-dom"
 import NavBar from "./components/NavBar"
 import Menu from "./components/Menu"
 import LoginForm from "./components/LoginForm"
 import Inventory from "./components/Inventory"
-import SignupForm from './components/SignupForm';
-
+import SignupForm from "./components/SignupForm"
 
 
 function App() {
+  let navigate = useNavigate()
   // const [count, setCount] = useState(0);
   const [user, setUser] = useState("")
-  const [loggedIn, setLoggedIn] = useState(false)
 
   useEffect(() => {
     fetch("/me")
@@ -37,22 +36,24 @@ function App() {
   function handleLogout() {
     const logoutObj = { method: "DELETE" }
     fetch("/logout", logoutObj)
-      .then(resp => resp.json())
-      .then(setUser(""))
-      .then(setLoggedIn(false))
+    .then(resp => resp.json())
+    .then(() => {
+      setUser("")
+      navigate("/login")
+    })
   }
 
   return (
     <div className="App">
-      {user ? <h2>Welcome, {`${user.username}`}</h2> : console.log(user)}
-      {loggedIn? <button onClick={handleLogout}>Logout</button> : null}
-      <NavBar user={user} />
+      <NavBar user={user}/>
+      {user ? <div><h2>Welcome, {`${user.username}`}</h2>
+      <button onClick={handleLogout}>Logout</button></div>
+       : console.log(user)}
       <Routes>
+        <Route element={user ? console.log(user): <LoginForm setUser={setUser}/> } path="/login"></Route>
         <Route element={<Menu/>} path="/menu"></Route>
-        <Route element={<LoginForm setUser={setUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} path="/login"></Route>
-        <Route element={<Inventory/>} path="/inventory"></Route>
         <Route element={<SignupForm/>} path="/signup"></Route>
-        
+        <Route element={user.is_manager ? <Inventory/> : console.log(user)} path="/inventory"></Route>
       </Routes>
     </div>
   );
