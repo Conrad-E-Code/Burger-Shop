@@ -51,9 +51,9 @@ function LoginForm({ setUser }) {
                 <br />
                 <button type="submit">Login</button>
                 <br />
-                {errors.map((err) => {
+                {/* {errors.map((err) => {
                     return <p>{err}</p>
-                })}
+                })} */}
             </form>
         </div>
     )

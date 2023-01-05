@@ -13,9 +13,9 @@ Supply.destroy_all
 
 
 manager = User.create(username: "manager1", password: "managerpass", is_manager: true)
-michelle = User.create(username: "michelle", password: "1234")
-conrad = User.create(username: "conrad", password: "burgers")
-cameron = User.create(username: "cameron", password: "hackerman")
+michelle = User.create(username: "michelle", password: "1234", is_manager: false)
+conrad = User.create(username: "conrad", password: "burgers", is_manager: false)
+cameron = User.create(username: "cameron", password: "hackerman", is_manager: false)
 
 denver = Location.create address: "2228 Blake St #100, Denver, CO 80205", user_id: manager.id
 ny = Location.create address: "11 Broadway 2nd floor, New York, NY 10004", user_id: manager.id

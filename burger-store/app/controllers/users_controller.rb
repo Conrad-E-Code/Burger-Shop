@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
- before_action :authorize
  # skip_before_action :authorize, only: 
   
   def create
@@ -25,10 +24,7 @@ class UsersController < ApplicationController
   
   private
   
-  def authorize
-    manager = session.include? :is_manager
-    return render json: { error: 'hello from authorize' }, status: :unauthorized unless manager
-  end
+
 
   def user_params
     params.permit(:username, :password, :password_confirmation)
