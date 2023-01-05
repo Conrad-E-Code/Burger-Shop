@@ -8,6 +8,17 @@ function LoginForm({ setUser, setLoggedIn, loggedIn }) {
     const usernameRef = useRef(null)
     const passwordRef = useRef(null)
 
+    //    OBSOLETE CODE 
+    // function errMap(errors) {
+    //     if(errors["errors"] === true){
+    //         console.log(errors["errors"])
+    //     errors["errors"].map((err)=> {
+    //         return(
+    //             <p>{err}</p>
+    //         )
+    //     })
+    //     }
+    // }
     function handleChangeUsername(e) {
         setUsername(e.target.value)
     }
@@ -35,7 +46,7 @@ function LoginForm({ setUser, setLoggedIn, loggedIn }) {
                 if (r.ok) {
                     r.json().then((user) => setUser(user))
                 } else {
-                    r.json().then((err) => setErrors(err))
+                    r.json().then((err) => setErrors(err["errors"]))
                 }
             })
             .then(usernameRef.current.value = '')
@@ -56,10 +67,11 @@ function LoginForm({ setUser, setLoggedIn, loggedIn }) {
                 <br />
                 <button type="submit">Login</button>
                 <br />
-                {/* {errors.map((err) => {
-                    return <p>{err}</p>
-                })} */}
             </form>
+            {errors.map((err) => (
+                <p style={{color: "red", fontWeight: "bold" }}
+                key={err}>{err}</p>
+            ))}
         </div>
     )
 }
