@@ -44,3 +44,12 @@
 .button.active {
   color: red
 }
+img {
+  width: 200px;
+  height: 200px;
+}
+.menu {
+  display: inline-flex;
+  justify-content: space-around;
+  text-align: center;
+}

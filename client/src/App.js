@@ -1,7 +1,7 @@
 
 import './App.css';
 import { useState, useEffect } from "react";
-import { Routes, Route, Link} from "react-router-dom"
+import { useNavigate, Routes, Route, Link} from "react-router-dom"
 import NavBar from "./NavBar"
 import Menu from "./Menu"
 import LoginForm from "./LoginForm"
@@ -9,6 +9,7 @@ import Inventory from "./Inventory"
 
 
 function App() {
+  let navigate = useNavigate()
   // const [count, setCount] = useState(0);
   const [user, setUser] = useState("")
   
@@ -34,19 +35,22 @@ function App() {
     const logoutObj = {method: "DELETE"}
     fetch("/logout", logoutObj)
     .then(resp => resp.json())
-    .then(setUser(""))
+    .then(data =>{
+      setUser("")
+      navigate("/login")
+    })
   }
 
   return (
     <div className="App">
-      {user ? <h2>Welcome, {`${user.username}`}</h2> : console.log(user)}
-      <button onClick={handleLogout}>Logout</button>
       <NavBar user={user}/>
+      {user ? <div><h2>Welcome, {`${user.username}`}</h2>
+      <button onClick={handleLogout}>Logout</button></div>
+       : console.log(user)}
       <Routes>
+        <Route element={user ? console.log(user): <LoginForm setUser={setUser}/> } path="/login"></Route>
         <Route element={<Menu/>} path="/menu"></Route>
-        <Route element={<LoginForm setUser={setUser}/>} path="/login"></Route>
-        <Route element={<Inventory/>} path="/inventory"></Route>
-        
+        <Route element={user.is_manager ? <Inventory/> : console.log(user)} path="/inventory"></Route>
       </Routes>
     </div>
   );

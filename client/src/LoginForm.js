@@ -1,11 +1,12 @@
 import { useState } from 'react'
+import { useNavigate} from "react-router-dom";
 
 function LoginForm({ setUser }) {
     //need states for current user and password
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [errors, setErrors] = useState([])
-
+    let navigate = useNavigate()
     function handleChangeUsername(e) {
         setUsername(e.target.value)
     }
@@ -32,6 +33,7 @@ function LoginForm({ setUser }) {
             .then(r => {
                 if (r.ok) {
                     r.json().then((user) => setUser(user))
+                    navigate("/menu")
                 } else {
                     r.json().then((err) => setErrors(err))
                 }
