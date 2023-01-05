@@ -2,31 +2,13 @@ import { useState, useEffect } from "react"
 
 function Inventory(props) {
     const [inv, setInv] = useState([])
-    // function mappedInv()  {
-    //     inv.map((i) => {
-    //         return(
-    //             <p>hello</p>
-    //         )
 
-    //     })}
-
-
-    // function loopedInv(inv) {
-    //     for(const key in inv) {
-    //         console.log(key)
-    //         return(
-    //             <p>{`${key}`}</p>
-    //         )
-    //     }
-    // }
     useEffect(() => {
-        const locationId = 1
-        fetch(`/inventories/${locationId}`)
+        fetch(`/inventories`)
             .then((r) => r.json())
-            .then((data) => setInv(data))
+            .then((data) => console.log(data))
     }, [])
 
-    console.log(inv)
 
     return (
         <div>
