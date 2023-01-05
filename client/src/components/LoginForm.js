@@ -54,6 +54,7 @@ function LoginForm({ setUser}) {
                 <button type="submit">Login</button>
                 <br />
             </form>
+                <button onClick={() => navigate("/signup")}>Signup</button>
             {errors.map((err) => (
                 <p style={{color: "red", fontWeight: "bold" }}
                 key={err}>{err}</p>
