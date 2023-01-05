@@ -7,7 +7,6 @@ function LoginForm({ setUser, setLoggedIn, loggedIn }) {
     const [errors, setErrors] = useState([])
     const usernameRef = useRef(null)
     const passwordRef = useRef(null)
-
     //    OBSOLETE CODE 
     // function errMap(errors) {
     //     if(errors["errors"] === true){

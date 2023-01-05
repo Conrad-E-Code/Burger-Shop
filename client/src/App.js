@@ -49,7 +49,7 @@ function App() {
       <NavBar user={user} />
       <Routes>
         <Route element={<Menu/>} path="/menu"></Route>
-        <Route element={<LoginForm setUser={setUser}/>} path="/login"></Route>
+        <Route element={<LoginForm setUser={setUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} path="/login"></Route>
         <Route element={<Inventory/>} path="/inventory"></Route>
         <Route element={<SignupForm/>} path="/signup"></Route>
         
