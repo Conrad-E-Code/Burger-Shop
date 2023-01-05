@@ -1,10 +1,13 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
-function LoginForm({ setUser }) {
+function LoginForm({ setUser, setLoggedIn, loggedIn }) {
     //need states for current user and password
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [errors, setErrors] = useState([])
+    const usernameRef = useRef(null)
+    const passwordRef = useRef(null)
+
     //    OBSOLETE CODE 
     // function errMap(errors) {
     //     if(errors["errors"] === true){
@@ -46,6 +49,9 @@ function LoginForm({ setUser }) {
                     r.json().then((err) => setErrors(err["errors"]))
                 }
             })
+            .then(usernameRef.current.value = '')
+            .then(passwordRef.current.value = '')
+            .then(setLoggedIn(true))
     }
 
 
@@ -55,9 +61,9 @@ function LoginForm({ setUser }) {
             <h2>LOGIN FORM</h2>
             <h2>Enter Credentials</h2>
             <form className="login-form" onSubmit={handleLogin}>
-                <label>Username<input type="text" onChange={handleChangeUsername} /></label>
+                <label>Username<input type="text" onChange={handleChangeUsername} ref={usernameRef}/></label>
                 <br />
-                <label>Password<input type="password" onChange={handleChangePassword} /></label>
+                <label>Password<input type="password" onChange={handleChangePassword} ref={passwordRef}/></label>
                 <br />
                 <button type="submit">Login</button>
                 <br />
