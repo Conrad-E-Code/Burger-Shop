@@ -36,7 +36,6 @@ function App() {
   function handleLogout() {
     const logoutObj = { method: "DELETE" }
     fetch("/logout", logoutObj)
-    .then(resp => resp.json())
     .then(() => {
       setUser("")
       navigate("/login")
@@ -52,7 +51,7 @@ function App() {
       <Routes>
         <Route element={user ? console.log(user): <LoginForm setUser={setUser}/> } path="/login"></Route>
         <Route element={<Menu/>} path="/menu"></Route>
-        <Route element={<SignupForm/>} path="/signup"></Route>
+        <Route element={<SignupForm navigate={navigate}/>} path="/signup"></Route>
         <Route element={user.is_manager ? <Inventory/> : console.log(user)} path="/inventory"></Route>
       </Routes>
     </div>

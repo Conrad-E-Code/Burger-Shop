@@ -1,6 +1,6 @@
 import {useState} from "react"
 
-function SignupForm(props) {
+function SignupForm({navigate}) {
 
     const [newUser, setNewUser] = useState("")
     const [newPass, setNewPass] = useState("")
@@ -24,7 +24,10 @@ function SignupForm(props) {
         fetch("/signup",signUpConfigObj)
         .then((r) => {
             if (r.ok) {
-              r.json().then(user => console.log(user));
+              r.json().then(user => {
+                console.log(user)
+                navigate("/login")
+            });
             } else {
               r.json().then((err) => setErrors(err.errors));
             }
