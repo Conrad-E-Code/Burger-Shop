@@ -7,7 +7,7 @@ private
 
 def authorize
   manager = session[:is_manager]
-  return render json: { error: 'hello from authorize'}, status: :unauthorized unless manager
+  return render json: { errors: ['Unauthorized hello from #authorize']}, status: :unauthorized unless manager
 end
 
 end

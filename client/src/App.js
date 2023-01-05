@@ -1,29 +1,31 @@
 
 import './App.css';
 import { useState, useEffect } from "react";
-import { useNavigate, Routes, Route, Link} from "react-router-dom"
-import NavBar from "./NavBar"
-import Menu from "./Menu"
-import LoginForm from "./LoginForm"
-import Inventory from "./Inventory"
+import { useNavigate, Routes, Route} from "react-router-dom"
+import NavBar from "./components/NavBar"
+import Menu from "./components/Menu"
+import LoginForm from "./components/LoginForm"
+import Inventory from "./components/Inventory"
+import SignupForm from "./components/SignupForm"
 
 
 function App() {
   let navigate = useNavigate()
   // const [count, setCount] = useState(0);
   const [user, setUser] = useState("")
-  
+
   useEffect(() => {
     fetch("/me")
-    .then(resp => {
-      if(resp.ok) {resp.json().then(data => {
-      console.log(data)
-      setUser(data)})
+      .then(resp => {
+        if (resp.ok) {
+          resp.json().then(data => {
+            console.log(data)
+            setUser(data)
+          })
+        }
       }
-      
-      })
-
-}, [])
+    )
+  }, [])
 
   // useEffect(() => {
   //   fetch("/hello")
@@ -32,10 +34,10 @@ function App() {
   // }, []);
 
   function handleLogout() {
-    const logoutObj = {method: "DELETE"}
+    const logoutObj = { method: "DELETE" }
     fetch("/logout", logoutObj)
     .then(resp => resp.json())
-    .then(data =>{
+    .then(() => {
       setUser("")
       navigate("/login")
     })
@@ -50,6 +52,7 @@ function App() {
       <Routes>
         <Route element={user ? console.log(user): <LoginForm setUser={setUser}/> } path="/login"></Route>
         <Route element={<Menu/>} path="/menu"></Route>
+        <Route element={<SignupForm/>} path="/signup"></Route>
         <Route element={user.is_manager ? <Inventory/> : console.log(user)} path="/inventory"></Route>
       </Routes>
     </div>

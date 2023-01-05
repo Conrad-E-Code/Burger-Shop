@@ -1,4 +1,5 @@
 import MenuItem from "./MenuItem"
+
 function Menu(){
     //WE NEED TO FETCH THE MENU AND RENDER THE ITEMS
 // function handleClick() {

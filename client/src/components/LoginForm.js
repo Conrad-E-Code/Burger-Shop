@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate} from "react-router-dom";
 
-function LoginForm({ setUser }) {
+function LoginForm({ setUser}) {
     //need states for current user and password
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -35,7 +35,7 @@ function LoginForm({ setUser }) {
                     r.json().then((user) => setUser(user))
                     navigate("/menu")
                 } else {
-                    r.json().then((err) => setErrors(err))
+                    r.json().then((err) => setErrors(err["errors"]))
                 }
             })
     }
@@ -47,16 +47,17 @@ function LoginForm({ setUser }) {
             <h2>LOGIN FORM</h2>
             <h2>Enter Credentials</h2>
             <form className="login-form" onSubmit={handleLogin}>
-                <label>Username<input type="text" onChange={handleChangeUsername} /></label>
+                <label>Username<input type="text" onChange={handleChangeUsername}/></label>
                 <br />
-                <label>Password<input type="password" onChange={handleChangePassword} /></label>
+                <label>Password<input type="password" onChange={handleChangePassword}/></label>
                 <br />
                 <button type="submit">Login</button>
                 <br />
-                {/* {errors.map((err) => {
-                    return <p>{err}</p>
-                })} */}
             </form>
+            {errors.map((err) => (
+                <p style={{color: "red", fontWeight: "bold" }}
+                key={err}>{err}</p>
+            ))}
         </div>
     )
 }
