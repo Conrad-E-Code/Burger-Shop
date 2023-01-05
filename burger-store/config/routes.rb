@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   get "/me", to: "users#show"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
-
+  post "/:user_id/cart", to: "items#create"
   # tables:
   # restaurants, orders, manager, customers
+  get "/cart", to: "carts#index"
 end
