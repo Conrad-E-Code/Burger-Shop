@@ -53,3 +53,11 @@ img {
   justify-content: space-around;
   text-align: center;
 }
+.logout{
+  position: fixed;
+  /* bottom: 0; */
+  right: 0;
+  width: 85px;
+  margin: 1%;
+  
+}

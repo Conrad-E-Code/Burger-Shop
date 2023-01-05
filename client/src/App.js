@@ -7,6 +7,7 @@ import Menu from "./components/Menu"
 import LoginForm from "./components/LoginForm"
 import Inventory from "./components/Inventory"
 import SignupForm from "./components/SignupForm"
+import Cart from './components/Cart';
 
 
 function App() {
@@ -44,14 +45,13 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar user={user}/>
-      {user ? <div><h2>Welcome, {`${user.username}`}</h2>
-      <button onClick={handleLogout}>Logout</button></div>
-       : console.log(user)}
+      <NavBar handleLogout={handleLogout} user={user}/>
+      {user ? <h2>Welcome, {`${user.username}`}</h2> : console.log(user)}
       <Routes>
         <Route element={user ? console.log(user): <LoginForm setUser={setUser}/> } path="/login"></Route>
         <Route element={<Menu/>} path="/menu"></Route>
         <Route element={<SignupForm navigate={navigate}/>} path="/signup"></Route>
+        <Route element={user.is_manager ? console.log(user) : <Cart user={user}/> } path="/cart"></Route>
         <Route element={user.is_manager ? <Inventory/> : console.log(user)} path="/inventory"></Route>
       </Routes>
     </div>
