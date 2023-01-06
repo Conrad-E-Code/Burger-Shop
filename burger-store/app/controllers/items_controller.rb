@@ -1,13 +1,19 @@
 class ItemsController < ApplicationController
-    skip_before_action :authorize
+    # skip_before_action :authorize
     def create
-        byebug
         user = User.find_by id: session[:user_id]
         cart = Cart.find_by user_id: user.id
-        item = Item.create cart_id: cart.id, name: params[:name]
+        if params[:name] == "Sliders"
+            price = 5.38
+        elsif params[:name] == "Fries"
+            price = 10.99
+        elsif params[:name] == "Onion Rings"
+            price = 421.68
+        end
+
+        item = Item.create cart_id: cart.id, name: params[:name], price: price
+
         session[:in_cart] = cart.get_items
-        byebug
         render json: item, status: :created
     end
-
 end
