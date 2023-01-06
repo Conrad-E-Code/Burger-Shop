@@ -57,18 +57,24 @@ function App() {
       navigate("/login")
     })
   }
+  function handleSeed() {
+    fetch("/seed")
+    .then(r => r.json())
+    .then(data => console.log(data))
+  }
 
   return (
     <div className="App">
+      <button onClick={handleSeed} >SEED-DEV-USE-ONLY</button>
       <NavBar handleLogout={handleLogout} user={user}/>
       {user ? <h2>Welcome, {`${user.username}`}</h2> : console.log(user)}
       <Routes>
-        <Route element={user ? console.log(user): <LoginForm setUser={setUser}/> } path="/login"></Route>
-        <Route element={<Menu cart={cart} setCart={setCart} user={user}/>} path="/menu"></Route>
-        <Route element={<SignupForm navigate={navigate}/>} path="/signup"></Route>
-        <Route element={user.is_manager ? console.log(user) : <Cart cart={cart} setCart={setCart} user={user}/> } path="/cart"></Route>
-        <Route element={user.is_manager ? <Inventory/> : console.log(user)} path="/inventory"></Route>
-        <Route element={user.is_manager ? <Orders/> : console.log(user)} path="/orders"></Route>
+        <Route element={user ? console.log(user): <LoginForm setUser={setUser}/> } path="/login1"></Route>
+        <Route element={<Menu cart={cart} setCart={setCart} user={user}/>} path="/menu1"></Route>
+        <Route element={<SignupForm navigate={navigate}/>} path="/signup1"></Route>
+        <Route element={user.is_manager ? console.log(user) : <Cart cart={cart} setCart={setCart} user={user}/> } path="/cart1"></Route>
+        <Route element={user.is_manager ? <Inventory/> : console.log(user)} path="/inventory1"></Route>
+        <Route element={user.is_manager ? <Orders/> : console.log(user)} path="/orders1"></Route>
       </Routes>
     </div>
   );

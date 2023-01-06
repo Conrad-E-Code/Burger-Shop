@@ -24,4 +24,5 @@ Rails.application.routes.draw do
     patch "/item/:name", to: "items#update"
     get "/orders", to: "orders#index"
     delete "/orders/:id", to: "orders#destroy"
+    get "/seed", to: "seeds#create"
 end
