@@ -33,7 +33,7 @@ function LoginForm({ setUser}) {
             .then(r => {
                 if (r.ok) {
                     r.json().then((user) => setUser(user))
-                    navigate("/menu")
+                    navigate("/menu1")
                 } else {
                     r.json().then((err) => setErrors(err["errors"]))
                 }
@@ -54,7 +54,7 @@ function LoginForm({ setUser}) {
                 <button type="submit">Login</button>
                 <br />
             </form>
-                <button onClick={() => navigate("/signup")}>Signup</button>
+                <button onClick={() => navigate("/signup1")}>Signup</button>
             {errors.map((err) => (
                 <p style={{color: "red", fontWeight: "bold" }}
                 key={err}>{err}</p>

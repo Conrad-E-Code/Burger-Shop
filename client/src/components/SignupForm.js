@@ -26,7 +26,7 @@ function SignupForm({navigate}) {
             if (r.ok) {
               r.json().then(user => {
                 console.log(user)
-                navigate("/login")
+                navigate("/login1")
             });
             } else {
               r.json().then((err) => setErrors(err.errors));

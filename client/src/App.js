@@ -16,6 +16,7 @@ function App() {
   // const [count, setCount] = useState(0);
   const [user, setUser] = useState("")
   const [cart, setCart] = useState({})
+  const [dev, setDev] = useState(false)
 
   useEffect(() => {
     fetch("/cart")
@@ -58,14 +59,15 @@ function App() {
     })
   }
   function handleSeed() {
+    
     fetch("/seed")
     .then(r => r.json())
-    .then(data => console.log(data))
+    .then(setDev(true))
   }
 
   return (
     <div className="App">
-      <button onClick={handleSeed} >SEED-DEV-USE-ONLY</button>
+      {dev? null: <button onClick={handleSeed} >SEED-DEV-USE-ONLY</button>}
       <NavBar handleLogout={handleLogout} user={user}/>
       {user ? <h2>Welcome, {`${user.username}`}</h2> : console.log(user)}
       <Routes>
