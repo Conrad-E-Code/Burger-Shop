@@ -55,7 +55,7 @@ function App() {
     fetch("/logout", logoutObj)
     .then(() => {
       setUser("")
-      navigate("/login")
+      navigate("/login1")
     })
   }
   function handleSeed() {
