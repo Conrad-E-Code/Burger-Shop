@@ -1,6 +1,6 @@
 import MenuItem from "./MenuItem"
 
-function Menu(){
+function Menu({user}){
     //WE NEED TO FETCH THE MENU AND RENDER THE ITEMS
 // function handleClick() {
 //     const testObj = {
@@ -22,7 +22,7 @@ function Menu(){
     return(
     <div>
         <h1>HELLO FROM MENU</h1>
-        <div><MenuItem/></div>
+        <div><MenuItem user={user}/></div>
     </div>
     )
 }

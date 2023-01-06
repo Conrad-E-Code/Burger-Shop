@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import CartItems from "./CartItems"
 
 const Cart = () => {
-    const [cart, setCart] = useState([])
+    const [cart, setCart] = useState({})
 
 
     const checkout = () => {
@@ -14,7 +14,8 @@ const Cart = () => {
         }
         fetch("/order", configObj)
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => {console.log(data)
+          setCart({})})
     }
 
     useEffect(() => {
@@ -31,7 +32,7 @@ const Cart = () => {
       }, [])
     return (
         <div>
-            <CartItems cart={cart}/>
+            <CartItems setCart={setCart} cart={cart}/>
             <br/>
             <button onClick={checkout}>CheckOut</button>
         </div>

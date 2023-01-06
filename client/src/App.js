@@ -49,7 +49,7 @@ function App() {
       {user ? <h2>Welcome, {`${user.username}`}</h2> : console.log(user)}
       <Routes>
         <Route element={user ? console.log(user): <LoginForm setUser={setUser}/> } path="/login"></Route>
-        <Route element={<Menu/>} path="/menu"></Route>
+        <Route element={<Menu user={user}/>} path="/menu"></Route>
         <Route element={<SignupForm navigate={navigate}/>} path="/signup"></Route>
         <Route element={user.is_manager ? console.log(user) : <Cart user={user}/> } path="/cart"></Route>
         <Route element={user.is_manager ? <Inventory/> : console.log(user)} path="/inventory"></Route>

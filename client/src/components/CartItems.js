@@ -1,18 +1,50 @@
-const CartItems = ({cart}) => {
+const CartItems = ({cart, setCart}) => {
 
-        let item = cart.items ? cart.items.map(item => {
+  
+
+            //     console.log(item.id)
+            //     fetch(`/item/${item.id}`, {method: "DELETE"})
+            //     .then(r => r.json())
+            //     .then(data => setCart(data))
+            // }
+            console.log(cart.items ? cart.items : null)
+    const loopedItems = (items) => {
+        const arr =[]
+        for (const key in items) {
+            const handleDelete = (key) => {
+                fetch(`/item/${key}`, {method: "DELETE"})
+                .then(r => r.json())
+                 .then(data => setCart(data))
+             }
+             arr.push(<div>
+                        <h1>{items[key]} {key} in Cart</h1>
+                        <button onClick={() => handleDelete(key)} >Remove From Cart</button>
+                    </div>) 
+            
+        }
+        return arr
+    }
+    const loopedPrices = (prices) => {
+     let total = 0
+        for (const key in prices) {
+            total = (total + key * prices[key])
+      } 
+      return <p>Total Price: ${total.toFixed(2)}</p>
+    }
             return (
                 <div>
-                    <h1>{item.name}</h1>
-                    <h2>${item.price}</h2>
-                    <button>Remove From Cart</button>
+
+                    {loopedItems(cart.items)}
+                    {loopedPrices(cart.prices)}
+                    {/* <h1>{item.name}</h1>
+                    <h2>${item.price}</h2> */}
+                    {/* <button onClick={() => handleDelete(item)}>Remove From Cart</button> */}
                 </div>
             )
-        }) : console.log(cart.items)
+
     
-    return (
-        <div>{item}</div>
-    )
+
+
 }
 
 export default CartItems
