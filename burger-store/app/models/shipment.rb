@@ -3,15 +3,13 @@ class Shipment < ApplicationRecord
     has_many :supplies
 
     def check_in
-        self.supplies.each do |supply| 
+        self.supplies.each do |supply|
             inventory = supply.shipment.location.inventory
             if supply.name == "patties"
                 patty_count = inventory.patty_count
                 newcount = patty_count + 80
                 inventory.update patty_count: newcount
                 supply.destroy
-
-            
             elsif supply.name == "buns"
                 bun_count = inventory.bun_count
                 newcount = bun_count + 24
@@ -23,9 +21,7 @@ class Shipment < ApplicationRecord
                 inventory.update fries_count: newcount
                 supply.destroy
             end
-            byebug
         end
+        Shipment.destroy_all
     end
 end
-
-
