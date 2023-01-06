@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const MenuItem = ({user}) => {
+const MenuItem = ({user, cart}) => {
     const [menu, setMenu] = useState(["Sliders", "Fries", "Onion Rings"]);
 
     const handleCart = (e) => {
@@ -15,6 +15,31 @@ const MenuItem = ({user}) => {
         .then(res => res.json())
         .then(data => console.log(data))
     };
+
+    const priceTool = (items) => {
+        const arr = []
+        for (const key in items) {
+            console.log(key)
+            const handlePriceAdjust = () => {
+                let patchObj = {
+                    method: "PATCH",
+                    headers: {"content-type": "application/json"},
+                    body: JSON.stringify({"name": `${key}` })
+                }
+        fetch(`item/${key}`, patchObj)
+        .then(r => r.json())
+        .then(data => console.log(data))
+
+    }  
+    arr.push(<div>
+            <h3>Manage {key}</h3>
+            <button onClick={handlePriceAdjust}>Increase Price</button>
+            <br />
+    </div>)
+        }
+        return arr
+    }
+
     return (
         <div>
             <div className="menu">
@@ -25,7 +50,7 @@ const MenuItem = ({user}) => {
                         alt="sliders"
                     />
                     <p>A cup of Fries</p>
-                    { user.is_manager ? <button>Increase Price</button> :<button value={menu[1]} onClick={handleCart}>
+                    { user.is_manager ? <button > Increase Price</button> :<button value={menu[1]} onClick={handleCart}>
                         Add to Cart
                     </button>}
                 </div>
@@ -51,7 +76,10 @@ const MenuItem = ({user}) => {
                         Add to Cart
                     </button>}
                 </div>
+                
             </div>
+            <br />
+            {user.is_manager? priceTool(cart.items): <p>looking for a job?</p>}
         </div>
     );
 };
