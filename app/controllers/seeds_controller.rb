@@ -1,4 +1,6 @@
 class SeedsController < ApplicationController
+    skip_before_action :authorize
+    skip_before_action :manager_authorize
     def create 
         User.destroy_all
 Location.destroy_all
