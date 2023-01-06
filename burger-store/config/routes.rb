@@ -20,4 +20,6 @@ Rails.application.routes.draw do
     get "/cart", to: "carts#index"
     post "/order", to: "orders#create"
     delete "/item/:name", to: "items#destroy"
+    patch "/item/:name", to: "items#update" 
+
 end

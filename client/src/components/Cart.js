@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import CartItems from "./CartItems"
 
-const Cart = () => {
-    const [cart, setCart] = useState({})
+const Cart = ({cart, setCart}) => {
+    
 
 
     const checkout = () => {
@@ -18,18 +18,7 @@ const Cart = () => {
           setCart({})})
     }
 
-    useEffect(() => {
-        fetch("/cart")
-          .then(resp => {
-            if (resp.ok) {
-              resp.json().then(data => {
-                console.log(data)
-                setCart(data)
-              })
-            }
-          }
-        )
-      }, [])
+
     return (
         <div>
             <CartItems setCart={setCart} cart={cart}/>
