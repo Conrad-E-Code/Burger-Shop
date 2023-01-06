@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const MenuItem = () => {
+const MenuItem = ({user}) => {
     const [menu, setMenu] = useState(["Sliders", "Fries", "Onion Rings"]);
 
     const handleCart = (e) => {
@@ -25,9 +25,9 @@ const MenuItem = () => {
                         alt="sliders"
                     />
                     <p>A cup of Fries</p>
-                    <button value={menu[1]} onClick={handleCart}>
+                    { user.is_manager ? <button>Increase Price</button> :<button value={menu[1]} onClick={handleCart}>
                         Add to Cart
-                    </button>
+                    </button>}
                 </div>
                 <div>
                     <h2>{menu[0]}</h2>
@@ -36,9 +36,9 @@ const MenuItem = () => {
                         alt="sliders"
                     />
                     <p>Comes with cheese, patty, and a bun</p>
-                    <button value={menu[0]} onClick={handleCart}>
+                    { user.is_manager ? <button>Increase Price</button> :<button value={menu[0]} onClick={handleCart}>
                         Add to Cart
-                    </button>
+                    </button>}
                 </div>
                 <div>
                     <h2>{menu[2]}</h2>
@@ -47,9 +47,9 @@ const MenuItem = () => {
                         alt="sliders"
                     />
                     <p>A box of Onion Rings</p>
-                    <button value={menu[2]} onClick={handleCart}>
+                    { user.is_manager ? <button>Increase Price</button> :<button value={menu[2]} onClick={handleCart}>
                         Add to Cart
-                    </button>
+                    </button>}
                 </div>
             </div>
         </div>

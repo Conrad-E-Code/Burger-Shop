@@ -19,4 +19,5 @@ Rails.application.routes.draw do
     # restaurants, orders, manager, customers
     get "/cart", to: "carts#index"
     post "/order", to: "orders#create"
+    delete "/item/:name", to: "items#destroy"
 end

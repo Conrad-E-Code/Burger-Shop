@@ -1,7 +1,8 @@
 class SessionsController < ApplicationController
     # post "/login", to: "sessions#create"
     #  delete "/logout", to: "sessions#destroy"
-    # skip_before_action :authorize, only: :create
+     skip_before_action :authorize, only: :create
+     skip_before_action :manager_authorize, only: [:create, :destroy]
     def create
         user = User.find_by(username: params[:username])
         if user&.authenticate params[:password]

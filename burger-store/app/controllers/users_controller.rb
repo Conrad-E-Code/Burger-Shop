@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-    # skip_before_action :authorize, only:
+     skip_before_action :authorize, only: [:create]
+     skip_before_action :manager_authorize, only: [:create, :show]
+
 
     def create
         user =
