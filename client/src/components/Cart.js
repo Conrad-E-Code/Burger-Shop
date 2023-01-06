@@ -1,8 +1,19 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import CartItems from "./CartItems"
 
 const Cart = ({cart, setCart}) => {
-    
+    useEffect(() => {
+        fetch("/cart")
+          .then(resp => {
+            if (resp.ok) {
+              resp.json().then(data => {
+                console.log(data)
+                setCart(data)
+              })
+            }
+          }
+        )
+      }, [])
 
 
     const checkout = () => {

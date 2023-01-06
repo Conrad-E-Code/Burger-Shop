@@ -1,10 +1,10 @@
 import MenuItem from "./MenuItem"
 
-function Menu({user, cart}){
+function Menu({user, setCart, cart}){
     return(
     <div>
         <h1>HELLO FROM MENU</h1>
-        <div><MenuItem cart={cart} user={user}/></div>
+        <div><MenuItem setCart={setCart} cart={cart} user={user}/></div>
     </div>
     )
 }

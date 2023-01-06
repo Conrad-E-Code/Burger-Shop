@@ -26,7 +26,7 @@ camCart = Cart.create user_id: cameron.id
 michCart = Cart.create user_id: michelle.id
 
 sliders = Item.create name: "Sliders", cart_id: manCart.id, price: 12.01
-onion_rings = Item.create name: "Onion Rings", cart_id: manCart.id, price: 6.89
+onion_rings = Item.create name: "Onion_Rings", cart_id: manCart.id, price: 6.89
 fries = Item.create name: "Fries", cart_id: manCart.id, price: 4.19
 
 denver =
@@ -40,7 +40,8 @@ denver_inv =
     Inventory.create location_id: denver.id,
                                       patty_count: 80,
                                       bun_count: 24,
-                                      fries_count: 100
+                                      fries_count: 100,
+                                      onion_rings_count: 100
 # ny_inv =
 #     Inventory.create location_id: ny.id,
 #                                       patty_count: 5,

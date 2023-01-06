@@ -8,6 +8,7 @@ import LoginForm from "./components/LoginForm"
 import Inventory from "./components/Inventory"
 import SignupForm from "./components/SignupForm"
 import Cart from './components/Cart';
+import Orders from './components/Orders';
 
 
 function App() {
@@ -65,8 +66,9 @@ function App() {
         <Route element={user ? console.log(user): <LoginForm setUser={setUser}/> } path="/login"></Route>
         <Route element={<Menu cart={cart} setCart={setCart} user={user}/>} path="/menu"></Route>
         <Route element={<SignupForm navigate={navigate}/>} path="/signup"></Route>
-        <Route element={user.is_manager ? console.log(user) : <Cart cart={cart} setCart={setCart}  user={user}/> } path="/cart"></Route>
+        <Route element={user.is_manager ? console.log(user) : <Cart cart={cart} setCart={setCart} user={user}/> } path="/cart"></Route>
         <Route element={user.is_manager ? <Inventory/> : console.log(user)} path="/inventory"></Route>
+        <Route element={user.is_manager ? <Orders/> : console.log(user)} path="/orders"></Route>
       </Routes>
     </div>
   );

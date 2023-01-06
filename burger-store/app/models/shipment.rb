@@ -20,6 +20,11 @@ class Shipment < ApplicationRecord
                 newcount = fries_amount + 100
                 inventory.update fries_count: newcount
                 supply.destroy
+            elsif supply.name == "onion_rings"
+                onion_rings_amount = inventory.onion_rings_count
+                newcount = onion_rings_amount + 100
+                inventory.update onion_rings_count: newcount
+                supply.destroy
             end
         end
         Shipment.destroy_all
