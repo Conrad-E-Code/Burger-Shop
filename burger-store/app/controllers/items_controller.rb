@@ -20,6 +20,16 @@ class ItemsController < ApplicationController
     #     session[:in_cart] = cart.get_items
          render json: item, status: :created
      end
+     def update
+        manager = User.find_by is_manager: true
+        cart = Cart.find_by user_id: manager.id
+        item = Item.find_by cart_id: cart.id, name: params[:name]
+        current_price = item.price
+        item.update price: current_price + 0.21
+
+        render json: item, status: 202
+
+    end
 
     def destroy
         # user = User.find_by id: session[:user_id]

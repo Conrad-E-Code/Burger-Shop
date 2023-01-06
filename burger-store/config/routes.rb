@@ -21,4 +21,7 @@ Rails.application.routes.draw do
     post "/order", to: "orders#create"
     delete "/item/:name", to: "items#destroy"
     post "/supplies", to: "supplies#create"
+    patch "/item/:name", to: "items#update" 
+
+
 end
