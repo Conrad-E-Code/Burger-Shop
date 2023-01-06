@@ -12,10 +12,7 @@ return(
         </> : 
         <NavLink className="button" exact to="/login">Login</NavLink>}
         {user.is_manager ? <NavLink className="button" exact to="/inventory">Inventory</NavLink> : console.log(user)}
-        {/* <NavLink to="/order">Order Now!</NavLink> */}
-        {/* <NavLink to="/status">Check Order Status!</NavLink> */}
-        {/* <NavLink to="/deals">Deals!</NavLink> */}
-    
+        {user.is_manager ? <NavLink to="/orders">Orders</NavLink>: console.log(user)}
     </nav>
     )
 }

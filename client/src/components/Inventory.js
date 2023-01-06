@@ -35,6 +35,8 @@ function Inventory(props) {
             <button onClick={handleResupply} value={"buns"}>Order Supplies</button>
             <p>Fries_count: {inv[0].fries_count}</p>
             <button onClick={handleResupply} value={"fries"}>Order Supplies</button>
+            <p>Onion_rings_count: {inv[0].onion_rings_count}</p>
+            <button onClick={handleResupply} value={"onion_rings"}>Order Supplies</button>
             {/* <h2>NYC</h2>
             <p>Patty_count: {inv[1].patty_count} </p>
             <button>Order Supplies</button>
